@@ -11,13 +11,15 @@ var bio =
 	"twitter":"",
 	"location":"1222 Park Avenue , Woodburn, OR"
     },
-     "welcome message" : "Hello",
+     "welcomeMessage" : "Hello , welcome to resume project",
      "skills" :
      [
 	
-	"C#","C++","Assembler","Power Shell","WPF","XML","Autocad developer","COM",
+	"C#","C++","Cli","Assembler",".Net","Power Shell","WPF","XML","HTML","WordML","SSML","Autocad","COM","Agile","TFS","Unit Testing","InstallShield","Telerik","ReSharper",
+        "Parallel programming","Cuda","Python",
      ],
-     "bioPic":"Images/fry.jpg"
+     "bioPic":"Images/fry.jpg",
+     "display" : "function"
     
     
 
@@ -39,21 +41,22 @@ var education =
   "onlineCourses":
   [
     {
-       "title" :"Javascript",  
-       "school" :"Code Academy",  
+       "title" :"Intro HTML and CSS",  
+       "school" :"Udacity",  
        "dates" :"2015",  
-       "url" :"http://www.codecademy.com/learn"  
+       "url" :"http://www.Udacity.com"  
       
     },
    {
-       "title" :"HTML & CSS",  
-       "school" :"Code Academy",  
+       "title" :"JavaScript Basics",  
+       "school" :"Udacity",  
        "dates" :"2015",  
-       "url" :"http://www.codecademy.com/learn"  
+       "url" :"http://www.Udacity.com"  
       
     }
        
-  ]
+  ],
+     "display" : "function"
     
     
 };
@@ -66,16 +69,16 @@ var work =
 	    "employer" : "EasyPower" ,
 	    "title" : "Senior Software Engineer",
             "location" : "7730 SW Mohawk St. , Tualatin, OR 97062",
-            "dates worked" : "1996 - Present",
-	    "description" : "EasyPower code"
+            "dates" : "1996 - Present",
+	    "description" : "Worked on small team maintaining and developing EasyPower visual power system analysis and design software.  \nSoftware was updated from Fortran to C to C++ and C# on Windows platform.  We utilize TFS with  Agile methods with continous build and Unit testing.  \nDesigned and written interface software to Autocad, Excel, Word, Web and Realtime SCADA."
      
 	},
 	{
 	    "employer" : "Data Solutions" ,
 	    "title" : "Software Engineer",
             "location" : "Oregon City, Oregon",
-	    "dates worked" : "1993-1996",
-	    "description" : "Data capture and conversion into cdrom format"
+	    "dates" : "1993-1996",
+	    "description" : "Data capture and conversion into custom cdrom format."
      
 	}
  ,
@@ -83,19 +86,20 @@ var work =
 	    "employer" : "ADC" ,
 	    "title" : "Software Engineer",
             "location" : "Lake Oswego, Oregon",
-	    "dates worked" : "1990-1993",
-	    "description" : "Media duplication and conversion"
+	    "dates" : "1990-1993",
+	    "description" : "Media duplication and conversion."
      
 	} ,
 	{
 	    "employer" : "ADP" ,
 	    "title" : "Programmer",
             "location" : "Portland, Oregon",
-	    "dates worked" : "1983-1990",
-	    "description" : "Diagnostic programmer"
+	    "dates" : "1983-1990",
+	    "description" : "Diagnostic programmer."
      
-	} ]
-};
+	} ],
+    "display" : "function"
+ };
 
 var projects =
 {
@@ -104,27 +108,29 @@ var projects =
      {
 	"title" :"EasyPower",  
 	"dates" :"1996 - 2015",  
-	"description" :"Power System analysis and design tool. Worked on Project to convert from Fortran to C to C++ to C#. Written interface software to Autocad, Excel, Word, Web and Realtime SCADA",  
+	"description" :"Electrical Power System Windows based analysis and design tool. ",  
 	"images" :"Images/EasyPower.png"
     },
      {
 	"title" :"StartTray",  
 	"dates" :"2013",  
-	"description" :"3D visualization tool to show how power cables are distributed in a faciltiy and calculate load factor so tray/conduit is not overload.  Coded in C# WPF MVVM",  
+	"description" :"3D visualization tool to show how power cables are distributed in a faciltiy and calculate load factor so tray/conduit is not overloaded.  Coded in C# WPF MVVM",  
 	"images" :"Images/SmartTray.png"
     }
   
     
-   ]
-    
-}
+   ],
+    "display" : "function"
+     
+};
 
 bio.display = function ()
 {
   $("#header").append(HTMLheaderName.replace("%data%",bio.name ));  
  $("#header").append(HTMLheaderRole.replace("%data%",bio.role ));
  $("#header").append(HTMLbioPic.replace("%data%",bio.bioPic ));
-  $("#header").append(HTMLemail.replace("%data%",bio.contacts.email ));
+  $("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage ));
+ $("#header").append(HTMLemail.replace("%data%",bio.contacts.email ));
 
 
 
@@ -147,7 +153,7 @@ work.display = function ()
         $(".work-entry:last").append(HTMLworkEmployer.replace("%data%",work.jobs[job].employer)+
                                       HTMLworkTitle.replace("%data%",work.jobs[job].title));
         $(".work-entry:last").append( HTMLworkLocation.replace("%data%",work.jobs[job].location));
-        $(".work-entry:last").append(HTMLworkDates.replace("%data%",work.jobs[job]["dates worked"]));
+        $(".work-entry:last").append(HTMLworkDates.replace("%data%",work.jobs[job]["dates"]));
         $(".work-entry:last").append(HTMLworkDescription.replace("%data%",work.jobs[job].description));
         
     }
@@ -194,15 +200,15 @@ projects.display();
 work.display();
 education.display();
 
-$(document).click(function(loc) {
+$(document).click(function(loc)
+{
   // your code goes here
   logClicks(loc.pageX,loc.pageY);
 });
 
-$('mainDiv').append(internationalizeButton);
-
 function inName( name )
 {
+    console.log(name);
     var l = [];
     l = name.split(" ")
     var str = l[0];
@@ -211,6 +217,9 @@ function inName( name )
     return first+" "+second ;
     
 }
+
+$('#main').append(internationalizeButton);
+
 
 
 $("#mapDiv").append(googleMap);
